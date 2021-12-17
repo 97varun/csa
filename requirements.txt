@@ -3,3 +3,4 @@ kaleido
 pandas
 nltk
 tqdm
+textblob
