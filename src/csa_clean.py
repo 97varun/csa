@@ -14,8 +14,8 @@ def remove_non_alnum_chars(word):
     return ''.join(c for c in word if c.isalnum() or c.isspace())
 
 
-def remove_stop_words(sentence):
-    return [w for w in sentence if w not in STOP_WORDS]
+def remove_stop_words(message):
+    return [w for w in message if w not in STOP_WORDS]
 
 
 def clean_message(message):
@@ -26,7 +26,7 @@ def clean_message(message):
 
 
 def clean_messages(messages):
-    return [clean_message(m) for m in tqdm(messages)]
+    return [{**m, 'text': clean_message(m['text'])} for m in tqdm(messages)]
 
 
 def is_english(message):
@@ -43,11 +43,12 @@ def filter_messages(messages):
     def crypto_filter(message):
         return has_word(message, 'shib') or has_word(message, 'doge')
 
-    return [m for m in tqdm(messages) if is_english(m) and crypto_filter(m)]
+    return [m for m in tqdm(messages)
+            if is_english(m['text']) and crypto_filter(m['text'])]
 
 
 def convert_to_lowercase(messages):
-    return [m.lower() for m in messages]
+    return [{**m, 'text': m['text'].lower()} for m in messages]
 
 
 if __name__ == '__main__':
@@ -58,8 +59,7 @@ if __name__ == '__main__':
 
     filtered_messages = filter_messages(convert_to_lowercase(messages))
     print(f'Number of filtered messages: {len(filtered_messages)}')
-    print(filtered_messages[:10])
+    print(filtered_messages[:100])
 
-    cleaned_messages = clean_messages(filtered_messages)
-    print(f'Number of cleaned messages: {len(cleaned_messages)}')
-    print(cleaned_messages[:10])
+    csa_data.save_json_data(
+        csa_constants.FILTERED_CHAT_DATA_FILE, filtered_messages)
