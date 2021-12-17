@@ -62,4 +62,4 @@ if __name__ == '__main__':
     print(filtered_messages[:100])
 
     csa_data.save_json_data(
-        csa_constants.FILTERED_CHAT_DATA_FILE, filtered_messages)
+        csa_constants.FILTERED_CHAT_DATA_FILE, {'messages': filtered_messages})

@@ -13,4 +13,6 @@ if __name__ == '__main__':
 
     messages = csa_sentiment.get_sentiment(messages)
 
-    csa_data.save_json_data(csa_constants.SENTIMENT_CHAT_DATA_FILE, messages)
+    csa_data.save_json_data(
+        csa_constants.SENTIMENT_CHAT_DATA_FILE,
+        {'messages': messages})
