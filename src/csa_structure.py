@@ -37,15 +37,15 @@ def get_flattened_messages(messages):
             return piece
 
     def stitch(pieces):
-        return ''.join(map(flatten, pieces))
-
-    flattened_messages = []
-
-    for message in messages:
-        if isinstance(message['text'], list):
-            flattened_messages.append(stitch(message['text']))
+        if isinstance(pieces, list):
+            return ''.join(map(flatten, pieces))
         else:
-            flattened_messages.append(message['text'])
+            return pieces
+
+    def flatten_message(message):
+        return {'text': stitch(message['text']), 'date': message['date']}
+
+    flattened_messages = list(map(lambda m: flatten_message(m), messages))
 
     return flattened_messages
 
@@ -56,4 +56,4 @@ if __name__ == "__main__":
     flattened_messages = get_flattened_messages(chat_data['messages'])
 
     print(f'Number of flattened_messages: {len(flattened_messages)}')
-    print(flattened_messages[:10])
+    print(flattened_messages[:100])
