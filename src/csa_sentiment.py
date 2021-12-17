@@ -2,7 +2,7 @@ from textblob import TextBlob
 
 import csa_data
 import csa_structure
-import csa_clean
+import csa_filter
 import csa_constants
 
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     messages = csa_structure.get_flattened_messages(chat_data['messages'])
 
-    messages = csa_clean.filter_messages(messages)
+    messages = csa_filter.filter_messages(messages)
 
     messages = get_sentiment(messages)
 
