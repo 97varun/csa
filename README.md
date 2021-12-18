@@ -2,7 +2,7 @@
 Install dependencies and download data for libraries used.
 ```
 pip install -r requirements.txt
-python3 ./src/csa_setup.py
+python3 -m csa.setup
 python3 -m textblob.download_corpora
 
 ```
@@ -25,16 +25,16 @@ optional arguments:
 Example
 
 ```
-python3 ./src/csa_main.py -i ./data/chat_data.json -o ./data/chat_sentiment_data.json
+python3 ./src/main.py -i ./data/chat_data.json -o ./data/chat_sentiment_data.json
 ```
 
-This will read chat data from `data/chat_data.json` and write chat data with sentiments to `data/chat_sentiment_data.json`.
+This will read chat data from `./data/chat_data.json` and write chat data with sentiments to `./data/chat_sentiment_data.json`.
 
 # Brief description
 
 ## Data
 - [Chat data from May 1 to May 15 2021](/data/chat_data.json), was downloaded in json fromat from the CryptoComOfficial telegram channel.
-### Structure ([csa_structure.py](/src/csa_structure.py))
+### Structure ([structure.py](/src/csa/structure.py))
 - Messages had a text field which was a string when the message was simple.
 - When the message had other elements, like links or styling, it was a list of dictionaries/strings having text and type fields.
 - The nesting was removed by stitching together text fields from each of the dictionaries.
@@ -52,11 +52,11 @@ Different types of styling
 {'bold', 'link', 'phone', 'hashtag', 'mention', 'cashtag', 'bot_command', 
 'code', 'pre', 'text_link', 'underline', 'email', 'italic', 'mention_name'}
 ```
-### Filtering ([csa_filter.py](/src/csa_filter.py))
+### Filtering ([filter.py](/src/csa/filter.py))
 - Messages were filtered by removing all messages that were not in English.
 - Among these messages, only the ones with `shib` or `doge` were selected.
 
-### Cleaning ([csa_clean.py](/src/csa_clean.py))
+### Cleaning ([clean.py](/src/csa/clean.py))
 - Messages were cleaned by removing all non alphanumeric characters and stopwords.
 - nltk's corpus of English stopwords was used.
 
@@ -65,12 +65,12 @@ Different types of styling
 - If this was greater than a threshold, the message was considered to be in English.
 - nltk's corpus of English words was used as the vocabulary.
 
-## Sentiment analysis ([csa_sentiment.py](/src/csa_sentiment.py))
+## Sentiment analysis ([sentiment.py](/src/csa/sentiment.py))
 - Textblob library was used to compute the sentiment of each message.
 - Better libraries/methods for sentiment analysis could be used.
 - Training a simple classifier on some data from this domain might yield better results.
 
-## Plots ([csa_plot.ipynb](/src/csa_plot.ipynb))
+## Plots ([plot.ipynb](/src/plot.ipynb))
 
 - Used pandas to aggregate the data and plotly express to plot the bar charts.
 - Ignored 0.0 polarity while computing average sentiment.

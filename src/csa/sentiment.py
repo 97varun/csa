@@ -30,11 +30,11 @@ def get_sentiment(messages, compute_sentiment_func):
 
 if __name__ == '__main__':
     messages = [
-        {'text': 'i love shib', 'date': '2018-01-01'},
-        {'text': 'i love doge', 'date': '2018-01-01'},
-        {'text': 'rip doge', 'date': '2018-01-01'},
+        {'clean_text': 'love shib', 'date': '2018-01-01'},
+        {'clean_text': 'love doge', 'date': '2018-01-01'},
+        {'clean_text': 'rip doge', 'date': '2018-01-01'},
     ]
 
-    messages = get_sentiment(messages)
+    messages = get_sentiment(messages, compute_sentiment_naive_bayes)
 
     print(messages)

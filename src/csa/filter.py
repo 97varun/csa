@@ -1,8 +1,8 @@
 from nltk.corpus import words
 from tqdm import tqdm
 
-import csa_clean
-import csa_setup
+from . import clean
+
 
 ENGLISH_WORDS = set(words.words('en'))
 MATCH_PERCENTAGE = 0.5
@@ -20,7 +20,7 @@ def has_word(message, word):
 
 
 def filter_messages(messages):
-    messages = csa_clean.convert_to_lowercase(messages)
+    messages = clean.convert_to_lowercase(messages)
 
     def crypto_filter(message):
         return has_word(message, 'shib') or has_word(message, 'doge')
@@ -32,8 +32,6 @@ def filter_messages(messages):
 
 
 if __name__ == '__main__':
-    csa_setup.setup_nltk_corpus()
-
     messages = [
         {'text': 'I love Shib', 'date': '2018-01-01'},
         {'text': 'I love doge', 'date': '2018-01-01'},
