@@ -24,7 +24,7 @@ optional arguments:
 Example
 
 ```
-python3 src/csa_main.py -i data/chat_data.json -o data/chat_sentiment_data.json
+python3 ./src/csa_main.py -i ./data/chat_data.json -o ./data/chat_sentiment_data.json
 ```
 
 This will read chat data from `data/chat_data.json` and write chat data with sentiments to `data/chat_sentiment_data.json`.
@@ -34,9 +34,9 @@ This will read chat data from `data/chat_data.json` and write chat data with sen
 ## Data
 - [Chat data from May 1 to May 15 2021](/data/chat_data.json), was downloaded in json fromat from the CryptoComOfficial telegram channel.
 ### Structure ([csa_structure.py](/src/csa_structure.py))
-- Messages had a text field that was a string when the message was simple.
-- When the message had other elements, like links or styling, it was a list of dictionaries/strings having a text and type fields.
-- The nesting was removed by taking the text fields from each of the dictionaries and stitching them together.
+- Messages had a text field which was a string when the message was simple.
+- When the message had other elements, like links or styling, it was a list of dictionaries/strings having text and type fields.
+- The nesting was removed by stitching together text fields from each of the dictionaries.
 
 Messages statistics
 
@@ -55,8 +55,8 @@ Different types of styling
 - Messages were filtered by removing all messages that were not in English.
 - Among these messages, only the ones with `shib` or `doge` were selected.
 #### Detecting english
-- For detecting whether a sentence is in English or not, the percentage of English words in the sentence was calculated.
-- If this was greater than a threshold, the sentence was considered to be English.
+- For detecting whether a message is in English or not, the percentage of English words in the message was calculated.
+- If this was greater than a threshold, the message was considered to be in English.
 - nltk's corpus of English words was used as the vocabulary.
 
 ## Sentiment analysis ([csa_sentiment.py](/src/csa_sentiment.py))
