@@ -55,6 +55,11 @@ Different types of styling
 ### Filtering ([csa_filter.py](/src/csa_filter.py))
 - Messages were filtered by removing all messages that were not in English.
 - Among these messages, only the ones with `shib` or `doge` were selected.
+
+### Cleaning ([csa_clean.py](/src/csa_clean.py))
+- Messages were cleaned by removing all non alphanumeric characters and stopwords.
+- nltk's corpus of English stopwords was used.
+
 #### Detecting english
 - For detecting whether a message is in English or not, the percentage of English words in the message was calculated.
 - If this was greater than a threshold, the message was considered to be in English.
@@ -62,7 +67,7 @@ Different types of styling
 
 ## Sentiment analysis ([csa_sentiment.py](/src/csa_sentiment.py))
 - Textblob library was used to compute the sentiment of each message.
-- We could use better libraries/methods for sentiment analysis.
+- Better libraries/methods for sentiment analysis could be used.
 - Training a simple classifier on some data from this domain might yield better results.
 
 ## Plots ([csa_plot.ipynb](/src/csa_plot.ipynb))
