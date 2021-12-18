@@ -1,17 +1,17 @@
 from nltk.corpus import words
 from tqdm import tqdm
 
-import csa_constants
 import csa_setup
 import csa_clean
 
 ENGLISH_WORDS = set(words.words('en'))
+MATCH_PERCENTAGE = 0.5
 
 
 def is_english(message):
     words = set(message.split())
     num_match_words = len([word for word in words if word in ENGLISH_WORDS])
-    return num_match_words > csa_constants.MATCH_PERCENTAGE * len(words)
+    return num_match_words > MATCH_PERCENTAGE * len(words)
 
 
 def has_word(message, word):
