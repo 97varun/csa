@@ -1,3 +1,4 @@
+from tqdm import tqdm
 from textblob import TextBlob
 
 import csa_data
@@ -11,7 +12,8 @@ def get_sentiment(messages):
         blob = TextBlob(message['text'])
         return {**message, 'sentiment': blob.sentiment.polarity}
 
-    messages = list(map(lambda m: compute_sentiment(m), messages))
+    print('Computing sentiment...')
+    messages = list(map(lambda m: compute_sentiment(m), tqdm(messages)))
 
     return messages
 

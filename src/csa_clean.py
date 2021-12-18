@@ -20,6 +20,7 @@ def clean_message(message):
 
 
 def clean_messages(messages):
+    print('Cleaning messages...')
     return [{**m, 'text': clean_message(m['text'])} for m in tqdm(messages)]
 
 

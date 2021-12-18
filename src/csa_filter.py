@@ -21,9 +21,12 @@ def has_word(message, word):
 
 
 def filter_messages(messages):
+    messages = csa_clean.convert_to_lowercase(messages)
+
     def crypto_filter(message):
         return has_word(message, 'shib') or has_word(message, 'doge')
 
+    print('Filtering messages...')
     return [m for m in tqdm(messages)
             if is_english(m['text']) and crypto_filter(m['text'])]
 
