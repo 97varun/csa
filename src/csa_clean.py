@@ -1,4 +1,4 @@
-import tqdm
+from tqdm import tqdm
 from nltk.corpus import stopwords
 
 STOP_WORDS = set(stopwords.words('english'))
@@ -9,7 +9,7 @@ def remove_non_alnum_chars(word):
 
 
 def remove_stop_words(message):
-    return [w for w in message if w not in STOP_WORDS]
+    return ' '.join([w for w in message if w not in STOP_WORDS])
 
 
 def clean_message(message):
@@ -21,7 +21,12 @@ def clean_message(message):
 
 def clean_messages(messages):
     print('Cleaning messages...')
-    return [{**m, 'text': clean_message(m['text'])} for m in tqdm(messages)]
+    return [
+        {
+            **m,
+            'clean_text': clean_message(m['text'])
+        }
+        for m in tqdm(messages)]
 
 
 def convert_to_lowercase(messages):
@@ -37,4 +42,5 @@ if __name__ == '__main__':
     ]
 
     cleaned_messages = convert_to_lowercase(messages)
+    cleaned_messages = clean_messages(cleaned_messages)
     print(cleaned_messages)
