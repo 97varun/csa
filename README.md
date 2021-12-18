@@ -67,6 +67,11 @@ Different types of styling
 
 ## Sentiment analysis ([sentiment.py](/src/csa/sentiment.py))
 - Textblob library was used to compute the sentiment of each message.
+- This library provides a very straightforward interface for sentiment analysis.
+- It supports couple of techniques for sentiment analysis - PatternAnalyzer, NaiveBayesAnalyzer.
+- Tried both of them and found both of them to be making a few errors.
+- PatternAnalyzer seems to give a lot more 0.0 values for sentiment polarity.
+- The current result shown in the plot was computed using NaiveBayesAnalyzer.
 - Better libraries/methods for sentiment analysis could be used.
 - Training a simple classifier on some data from this domain might yield better results.
 
