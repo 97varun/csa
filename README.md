@@ -1,9 +1,10 @@
 # Setup
 Install dependencies and download data for libraries used.
 ```
-pip install requirements.txt
-python3 setup.py
+pip install -r requirements.txt
+python3 ./src/csa_setup.py
 python3 -m textblob.download_corpora
+
 ```
 
 # Usage
