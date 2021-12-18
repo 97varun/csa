@@ -1,11 +1,6 @@
 from tqdm import tqdm
 from textblob import TextBlob
 
-import csa_data
-import csa_structure
-import csa_filter
-import csa_constants
-
 
 def get_sentiment(messages):
     def compute_sentiment(message):
@@ -19,12 +14,11 @@ def get_sentiment(messages):
 
 
 if __name__ == '__main__':
-    chat_data = csa_data.get_json_data(csa_constants.CHAT_DATA_FILE)
-
-    messages = csa_structure.get_flattened_messages(chat_data['messages'])
-
-    messages = csa_filter.filter_messages(messages)
+    messages = [
+        {'text': 'i love shib', 'date': '2018-01-01'},
+        {'text': 'i love doge', 'date': '2018-01-01'}
+    ]
 
     messages = get_sentiment(messages)
 
-    print(messages[:10])
+    print(messages)

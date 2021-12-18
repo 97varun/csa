@@ -26,3 +26,15 @@ def clean_messages(messages):
 
 def convert_to_lowercase(messages):
     return [{**m, 'text': m['text'].lower()} for m in messages]
+
+
+if __name__ == '__main__':
+    messages = [
+        {'text': 'I love Shib', 'date': '2018-01-01'},
+        {'text': 'I love doge', 'date': '2018-01-01'},
+        {'text': 'random', 'date': '2018-01-01'},
+        {'text': 'Привет мир', 'date': '2018-01-02'},
+    ]
+
+    cleaned_messages = convert_to_lowercase(messages)
+    print(cleaned_messages)

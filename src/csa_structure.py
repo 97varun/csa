@@ -1,7 +1,3 @@
-import csa_constants
-import csa_data
-
-
 def view_unique_nested_types(nested_messages):
     unique_types = set()
     for message in nested_messages:
@@ -51,9 +47,29 @@ def get_flattened_messages(messages):
 
 
 if __name__ == "__main__":
-    chat_data = csa_data.get_json_data(csa_constants.CHAT_DATA_FILE)
+    chat_data = {
+        'messages': [
+            {
+                'text': 'i love shib',
+                'date': '2018-01-01',
+                'random': 'random'
+            },
+            {
+                'text': [
+                    'i ',
+                    {
+                        'text': 'love',
+                        'type': 'bold'
+                    },
+                    ' doge'
+                ],
+                'date': '2018-01-01',
+                'random': 'random'
+            },
+        ],
+    }
 
     flattened_messages = get_flattened_messages(chat_data['messages'])
 
     print(f'Number of flattened_messages: {len(flattened_messages)}')
-    print(flattened_messages[:100])
+    print(flattened_messages)

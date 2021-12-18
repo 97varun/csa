@@ -1,3 +1,5 @@
+import os
+import sys
 import json
 
 import csa_constants
@@ -16,8 +18,11 @@ def save_json_data(json_file, data):
 
 
 if __name__ == "__main__":
-    chat_data = get_json_data(csa_constants.CHAT_DATA_FILE)
+    data_directory = sys.argv[1]
+    chat_data = get_json_data(os.path.join(
+        data_directory, csa_constants.CHAT_DATA_FILE))
 
     print(len(chat_data['messages']))
 
-    save_json_data(csa_constants.NEW_CHAT_DATA_FILE, chat_data)
+    save_json_data(csa_constants.TEST_SAVE_CHAT_DATA_FILE,
+                   {'messages': chat_data['messages'][:10]})
