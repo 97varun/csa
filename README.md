@@ -9,6 +9,21 @@ python3 -m textblob.download_corpora
 # Usage
 
 ```
+usage: csa_main.py [-h] -i INPUT_FILE -o OUTPUT_FILE   
+
+Cryto sentiment analyzer
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT_FILE, --input_file INPUT_FILE
+                        Path to raw chat data file     
+  -o OUTPUT_FILE, --output_file OUTPUT_FILE
+                        Path to output data file
+```
+
+Example
+
+```
 python3 src/csa_main.py -i data/chat_data.json -o data/chat_sentiment_data.json
 ```
 
@@ -33,9 +48,8 @@ Number of normal_messages: 44782
 
 Different types of styling
 ```
-{'bold', 'link', 'phone', 'hashtag', 'mention',
-    'cashtag', 'bot_command', 'code', 'pre', 'text_link',
-    'underline', 'email', 'italic', 'mention_name'}
+{'bold', 'link', 'phone', 'hashtag', 'mention', 'cashtag', 'bot_command', 
+'code', 'pre', 'text_link', 'underline', 'email', 'italic', 'mention_name'}
 ```
 ### Filtering ([csa_filter.py](/src/csa_filter.py))
 - Messages were filtered by removing all messages that were not in English.
@@ -47,10 +61,27 @@ Different types of styling
 
 ## Sentiment analysis ([csa_sentiment.py](/src/csa_sentiment.py))
 - Textblob library was used to compute the sentiment of each message.
+- We could use better libraries/methods for sentiment analysis.
+
+Positive messages like the ones shown below are detected to be neutral by the library. Training a simple classifier like Naive Bayes with some data from this domain might help achieve better results.
+
+```
+{
+    "text": "doge to the moon",
+    "date": "2021-05-01T01:49:19",
+    "sentiment": 0.0
+},
+{
+    "text": "doge is gonna rise",
+    "date": "2021-05-01T03:55:20",
+    "sentiment": 0.0
+},
+```
 
 ## Plots ([csa_plot.ipynb](/src/csa_plot.ipynb))
 
 - Used pandas to aggregate the data and plotly express to plot the bar charts.
+- Ignored 0.0 polarity while computing average sentiment.
 
 | Number of messages per day | Average sentiment per day |
 | ---------------------------| ------------------------- |
