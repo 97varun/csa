@@ -1,5 +1,4 @@
 import argparse
-import os
 
 import csa_clean
 import csa_data
@@ -34,7 +33,7 @@ if __name__ == '__main__':
         csa_sentiment.compute_sentiment_naive_bayes
     )
 
-    result_file_path = os.path.join(args.output_file)
+    result_file_path = args.output_file
 
     csa_data.save_json_data(result_file_path, {'messages': messages})
 

@@ -16,11 +16,13 @@ def clean_message(message):
     message = message.lower()
     message = remove_non_alnum_chars(message)
     message = remove_stop_words(message.split())
+
     return message
 
 
 def clean_messages(messages):
     print('Cleaning messages...')
+
     return [
         {
             **m,

@@ -11,6 +11,7 @@ MATCH_PERCENTAGE = 0.5
 def is_english(message):
     words = set(message.split())
     num_match_words = len([word for word in words if word in ENGLISH_WORDS])
+
     return num_match_words > MATCH_PERCENTAGE * len(words)
 
 
@@ -25,6 +26,7 @@ def filter_messages(messages):
         return has_word(message, 'shib') or has_word(message, 'doge')
 
     print('Filtering messages...')
+
     return [m for m in tqdm(messages)
             if is_english(m['text']) and crypto_filter(m['text'])]
 
