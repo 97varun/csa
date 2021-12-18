@@ -9,8 +9,10 @@ python3 -m textblob.download_corpora
 # Usage
 
 ```
-python3 src/csa_main.py data
+python3 src/csa_main.py -i data/chat_data.json -o data/chat_sentiment_data.json
 ```
+
+This will read chat data from `data/chat_data.json` and write chat data with sentiments to `data/chat_sentiment_data.json`.
 
 # Brief description
 

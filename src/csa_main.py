@@ -1,17 +1,27 @@
 import os
 import sys
+import argparse
 
 import csa_data
 import csa_structure
 import csa_filter
 import csa_sentiment
-import csa_constants
+
+
+def get_cmdline_args():
+    parser = argparse.ArgumentParser(description='Cryto sentiment analyzer')
+    parser.add_argument('-i', '--input_file',
+                        help='Path to raw chat data file', required=True)
+    parser.add_argument('-o', '--output_file',
+                        help='Path to output data file', required=True)
+
+    return parser.parse_args()
+
 
 if __name__ == '__main__':
-    data_directory = sys.argv[1]
+    args = get_cmdline_args()
 
-    chat_data = csa_data.get_json_data(
-        os.path.join(data_directory, csa_constants.CHAT_DATA_FILE))
+    chat_data = csa_data.get_json_data(args.input_file)
 
     messages = csa_structure.get_flattened_messages(chat_data['messages'])
 
@@ -19,9 +29,8 @@ if __name__ == '__main__':
 
     messages = csa_sentiment.get_sentiment(messages)
 
-    result_file_path = os.path.join(
-        data_directory, csa_constants.SENTIMENT_CHAT_DATA_FILE)
+    result_file_path = os.path.join(args.output_file)
 
     csa_data.save_json_data(result_file_path, {'messages': messages})
 
-    print(f'Computed sentiment for messages and saved to {result_file_path}')
+    print(f'Computed sentiment for messages and saved to "{result_file_path}"')
