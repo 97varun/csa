@@ -1,5 +1,5 @@
-from tqdm import tqdm
 from nltk.corpus import stopwords
+from tqdm import tqdm
 
 STOP_WORDS = set(stopwords.words('english'))
 

@@ -1,12 +1,11 @@
-import os
-import sys
 import argparse
+import os
 
-import csa_data
-import csa_structure
-import csa_filter
 import csa_clean
+import csa_data
+import csa_filter
 import csa_sentiment
+import csa_structure
 
 
 def get_cmdline_args():

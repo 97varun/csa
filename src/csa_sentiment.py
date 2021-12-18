@@ -1,8 +1,6 @@
-from typing import Text
-from tqdm import tqdm
-from textblob import TextBlob, Blobber
-
+from textblob import Blobber, TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
+from tqdm import tqdm
 
 blobber = Blobber(analyzer=NaiveBayesAnalyzer())
 

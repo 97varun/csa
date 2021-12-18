@@ -1,7 +1,5 @@
-import os
-import sys
-import json
 import argparse
+import json
 
 
 def get_json_data(json_file):

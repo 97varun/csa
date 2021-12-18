@@ -1,8 +1,8 @@
 from nltk.corpus import words
 from tqdm import tqdm
 
-import csa_setup
 import csa_clean
+import csa_setup
 
 ENGLISH_WORDS = set(words.words('en'))
 MATCH_PERCENTAGE = 0.5
