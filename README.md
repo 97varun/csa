@@ -62,21 +62,7 @@ Different types of styling
 ## Sentiment analysis ([csa_sentiment.py](/src/csa_sentiment.py))
 - Textblob library was used to compute the sentiment of each message.
 - We could use better libraries/methods for sentiment analysis.
-
-Positive messages like the ones shown below are detected to be neutral by the library. Training a simple classifier like Naive Bayes with some data from this domain might help achieve better results.
-
-```
-{
-    "text": "doge to the moon",
-    "date": "2021-05-01T01:49:19",
-    "sentiment": 0.0
-},
-{
-    "text": "doge is gonna rise",
-    "date": "2021-05-01T03:55:20",
-    "sentiment": 0.0
-},
-```
+- Training a simple classifier on some data from this domain might yield better results.
 
 ## Plots ([csa_plot.ipynb](/src/csa_plot.ipynb))
 

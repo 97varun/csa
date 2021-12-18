@@ -5,6 +5,7 @@ import argparse
 import csa_data
 import csa_structure
 import csa_filter
+import csa_clean
 import csa_sentiment
 
 
@@ -27,7 +28,12 @@ if __name__ == '__main__':
 
     messages = csa_filter.filter_messages(messages)
 
-    messages = csa_sentiment.get_sentiment(messages)
+    messages = csa_clean.clean_messages(messages)
+
+    messages = csa_sentiment.get_sentiment(
+        messages,
+        csa_sentiment.compute_sentiment_naive_bayes
+    )
 
     result_file_path = os.path.join(args.output_file)
 
